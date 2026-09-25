@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" fill="none">
+  <!-- Background -->
+  <rect width="240" height="180" fill="#f4f1ec"/>
+
+  <!-- Pistol body / slide -->
+  <rect x="40" y="60" width="130" height="36" rx="5" fill="#2c2c2c"/>
+  <!-- Slide serrations -->
+  <line x1="140" y1="62" x2="140" y2="94" stroke="#444" stroke-width="2"/>
+  <line x1="150" y1="62" x2="150" y2="94" stroke="#444" stroke-width="2"/>
+  <line x1="160" y1="62" x2="160" y2="94" stroke="#444" stroke-width="2"/>
+  <!-- Ejection port -->
+  <rect x="120" y="64" width="25" height="10" rx="2" fill="#1a1a1a"/>
+  <!-- Front sight -->
+  <rect x="48" y="56" width="6" height="8" rx="1" fill="#555"/>
+  <!-- Rear sight -->
+  <rect x="158" y="56" width="10" height="8" rx="1" fill="#555"/>
+  <!-- Barrel tip -->
+  <rect x="28" y="72" width="16" height="12" rx="3" fill="#1a1a1a"/>
+  <circle cx="33" cy="78" r="4" fill="#0d0d0d"/>
+
+  <!-- Frame -->
+  <path d="M100 96 L160 96 L160 110 L100 110 Z" fill="#3a3a3a"/>
+  <!-- Trigger guard -->
+  <path d="M85 96 Q70 96 70 112 Q70 128 85 128 L110 128 L110 96 Z" fill="#3a3a3a" stroke="#555" stroke-width="1"/>
+  <!-- Trigger -->
+  <path d="M90 102 L86 120 L92 120 L94 102 Z" fill="#888"/>
+  <!-- Grip -->
+  <rect x="110" y="96" width="50" height="68" rx="4" fill="#2a2a2a"/>
+  <!-- Grip texture lines -->
+  <line x1="116" y1="104" x2="154" y2="104" stroke="#444" stroke-width="1.5"/>
+  <line x1="116" y1="112" x2="154" y2="112" stroke="#444" stroke-width="1.5"/>
+  <line x1="116" y1="120" x2="154" y2="120" stroke="#444" stroke-width="1.5"/>
+  <line x1="116" y1="128" x2="154" y2="128" stroke="#444" stroke-width="1.5"/>
+  <line x1="116" y1="136" x2="154" y2="136" stroke="#444" stroke-width="1.5"/>
+  <line x1="116" y1="144" x2="154" y2="144" stroke="#444" stroke-width="1.5"/>
+  <!-- Magazine base -->
+  <rect x="113" y="160" width="44" height="6" rx="2" fill="#1a1a1a"/>
+  <!-- Rail -->
+  <rect x="40" y="96" width="62" height="8" rx="2" fill="#444"/>
+</svg>
