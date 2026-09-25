@@ -1,7 +1,18 @@
 import GUNS from '../data/guns.js'
 import GunCard from '../components/GunCard.jsx'
 
-function Catalog() {
+function Catalog({ searchQuery = '', onAddToCart, onOrder }) {
+  const filteredGuns = GUNS.filter((gun) => {
+    if (!searchQuery.trim()) return true
+    const q = searchQuery.toLowerCase()
+    return (
+      gun.name.toLowerCase().includes(q) ||
+      gun.type.toLowerCase().includes(q) ||
+      gun.caliber.toLowerCase().includes(q) ||
+      gun.description.toLowerCase().includes(q)
+    )
+  })
+
   return (
     <>
       <section className="masthead">
@@ -15,11 +26,31 @@ function Catalog() {
       <section>
         <div className="list-head">
           <h2>Current stock</h2>
-          <span className="count">{GUNS.length} pieces</span>
+          <span className="count">
+            {searchQuery
+              ? `${filteredGuns.length} found`
+              : `${GUNS.length} pieces`}
+          </span>
         </div>
-        <ul className="stock">
-          {GUNS.map((gun) => <GunCard key={gun.name} gun={gun} />)}
-        </ul>
+
+        {filteredGuns.length === 0 ? (
+          <div className="search-empty">
+            <p className="lede">
+              No firearms found matching "<strong>{searchQuery}</strong>".
+            </p>
+          </div>
+        ) : (
+          <ul className="stock">
+            {filteredGuns.map((gun) => (
+              <GunCard
+                key={gun.name}
+                gun={gun}
+                onAddToCart={onAddToCart}
+                onOrder={onOrder}
+              />
+            ))}
+          </ul>
+        )}
       </section>
     </>
   )
