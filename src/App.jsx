@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
 import Catalog from './pages/Catalog.jsx'
@@ -12,6 +12,46 @@ function App() {
   const [cart, setCart] = useState([])
   const [searchQuery, setSearchQuery] = useState('')
   const [toast, setToast] = useState(null)
+  const [orders, setOrders] = useState(() => {
+    try {
+      const saved = localStorage.getItem('bore_barrel_orders')
+      if (saved) return JSON.parse(saved)
+    } catch {
+      // fallback
+    }
+    return [
+      {
+        id: 'ORD-8921',
+        name: 'Glock 17',
+        type: 'Pistol',
+        caliber: '9mm',
+        price: 599,
+        quantity: 1,
+        image: '/guns/pistol.svg',
+        status: 'In Transit',
+        orderDate: 'Today',
+      },
+      {
+        id: 'ORD-8919',
+        name: 'Remington 870',
+        type: 'Shotgun',
+        caliber: '12 Gauge',
+        price: 449,
+        quantity: 1,
+        image: '/guns/shotgun.svg',
+        status: 'Cargo Dispatched',
+        orderDate: 'Yesterday',
+      },
+    ]
+  })
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('bore_barrel_orders', JSON.stringify(orders))
+    } catch {
+      // ignore
+    }
+  }, [orders])
 
   const showToast = (message) => {
     setToast(message)
@@ -60,6 +100,28 @@ function App() {
     setCart([])
   }
 
+  const handleCancelOrder = (orderId) => {
+    const cancelled = orders.find((o) => o.id === orderId)
+    setOrders((prev) => prev.filter((o) => o.id !== orderId))
+    showToast(`✕ Order for ${cancelled ? cancelled.name : 'item'} cancelled`)
+  }
+
+  const handlePlaceOrder = (cartItems) => {
+    if (!cartItems || cartItems.length === 0) return
+    const newItems = cartItems.map((item, idx) => ({
+      id: `ORD-${Date.now().toString().slice(-4)}${idx}`,
+      name: item.name,
+      type: item.type,
+      caliber: item.caliber,
+      price: item.price,
+      quantity: item.quantity,
+      image: item.image,
+      status: 'Cargo Dispatched',
+      orderDate: 'Just now',
+    }))
+    setOrders((prev) => [...newItems, ...prev])
+  }
+
   const totalCartCount = cart.reduce((sum, item) => sum + item.quantity, 0)
 
   return (
@@ -70,6 +132,8 @@ function App() {
         cartCount={totalCartCount}
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
+        orders={orders}
+        onCancelOrder={handleCancelOrder}
       />
 
       <main className="main">
@@ -89,6 +153,7 @@ function App() {
             onRemove={handleRemoveFromCart}
             onClear={handleClearCart}
             onContinueShopping={() => setTab('Catalog')}
+            onPlaceOrder={handlePlaceOrder}
           />
         )}
       </main>
