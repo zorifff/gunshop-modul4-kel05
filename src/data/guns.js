@@ -53,6 +53,24 @@ const GUNS = [
     description:
       'The other pump gun. Twin action bars, a simple safety on the tang, and a price that leaves money for ammunition.',
   },
+  {
+    name: 'AK-47 Type 3',
+    type: 'Rifle',
+    caliber: '7.62mm',
+    price: 1099,
+    image: '/guns/ak47.png',
+    description:
+      'Milled-receiver classic with a wooden stock and handguard. Heavier than the stamped versions, smoother on the trigger, and built to outlast its owner.',
+  },
+  {
+    name: 'Desert Eagle Mark XIX',
+    type: 'Pistol',
+    caliber: '.44 Magnum',
+    price: 1799,
+    image: '/guns/desert%20egle.png',
+    description:
+      'The Mark XIX platform with a full-length Picatinny rail on the barrel. Big, heavy, and loud — a magnum revolver round in a semi-automatic frame.',
+  },
 ]
 
 export default GUNS

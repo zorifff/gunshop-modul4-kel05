@@ -498,6 +498,46 @@
   font-size: 0.9rem;
 }
 
+.type-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 0 16px;
+}
+
+.type-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--ink);
+  background: #ffffff;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.type-filter-btn:hover {
+  border-color: var(--brass);
+}
+
+.type-filter-btn.active {
+  background: var(--panel);
+  color: var(--panel-text);
+  border-color: var(--panel);
+}
+
+.type-filter-count {
+  font-size: 0.75rem;
+  color: var(--steel);
+}
+
+.type-filter-btn.active .type-filter-count {
+  color: var(--brass);
+}
+
 .stock {
   list-style: none;
   margin: 0;
@@ -531,6 +571,9 @@
 .card-img {
   width: 100%;
   height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  background: #fff;
   margin-bottom: 10px;
   border-bottom: 1px solid var(--line);
 }
@@ -572,6 +615,9 @@
 .popup-img {
   width: 100%;
   height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  background: #fff;
   margin-bottom: 16px;
   border-bottom: 1px solid var(--line);
 }
